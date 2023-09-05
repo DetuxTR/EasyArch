@@ -12,9 +12,10 @@ if __name__ == "__main__":
 
     print("""Easy Arch v.0.1""")
     disk=diskutil.StorageDevice("/dev/loop0")
+
     disk.init()
     disk.getPartInfofromNumber(-1)
     print(disk.lastPartInfo()["number"])
-    disk.addPartition(48,"ext4","normal")
-    disk.deletePartitionbyNum(2)
+
+    disk.deletePartitionbyNum(1)
     print(disk.lastPartInfo()["number"])
