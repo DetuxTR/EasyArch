@@ -66,3 +66,7 @@ class StorageDevice():
                                 )
         self.disk.addPartition(part, constraint=self.device.optimalAlignedConstraint)
         self.disk.commit()
+    
+    def deletePartitionbyNum(self, partNum):
+        os.system("sudo parted -s {} rm {}".format(self.disklocation,partNum))
+        
