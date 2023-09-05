@@ -1,7 +1,9 @@
 import parted
 import os
 
-
+def getPartType(partstr):
+    if partstr == "normal":
+        return parted.PARTITION_NORMAL
 class StorageDevice():
     def __init__(self, disklocation):
         self.disklocation = disklocation
@@ -34,9 +36,33 @@ class StorageDevice():
                 partinfo["type"] = partition.type
                 partinfo["geometry-start"] = geo.start
                 partinfo["geometry-end"] = geo.end
-                partinfo["geometry-lenght"] = geo.lenght
+                partinfo["geometry-lenght"] = geo.length
+        return partinfo
 
     def lastPartInfo(self):
-        self.getPartInfofromNumber(self.disk.lastPartitionNumber)
+        last_partition = self.getPartInfofromNumber(self.disk.lastPartitionNumber)
+        if last_partition:
+            return last_partition
+        else:
+            return {"number": -1}
 
 
+    def addPartition(self,length,fstype,pr_type):
+        type = getPartType(pr_type)
+        if self.lastPartInfo()["number"] == -1:
+            start = 0
+        else:
+            start = self.lastPartInfo()["geometry-end"]
+        geometry = parted.Geometry(start=start,
+                                   length=parted.sizeToSectors(length, 'MiB', self.device.sectorSize),
+                                   device=self.device
+                                   )
+        fs = parted.FileSystem(type=fstype,
+                               geometry=geometry
+                               )
+        part = parted.Partition(disk=self.disk,
+                                type=type,
+                                fs=fs,geometry=geometry
+                                )
+        self.disk.addPartition(part, constraint=self.device.optimalAlignedConstraint)
+        self.disk.commit()

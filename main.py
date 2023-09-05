@@ -1,10 +1,12 @@
+import parted
+
 import diskutil
 import sys
 import os
 if __name__ == "__main__":
     for argv in sys.argv:
         if argv == "testmode":
-            print(argv)
+            print("I'm running at testmode. All of the operations will applied on disk.img")
             os.system("losetup -f disk.img")
             os.system("kpartx -a /dev/loop0")
 
@@ -12,4 +14,5 @@ if __name__ == "__main__":
     disk=diskutil.StorageDevice("/dev/loop0")
     disk.init()
     disk.getPartInfofromNumber(-1)
-    disk.lastPartInfo()
+    print(disk.lastPartInfo()["number"])
+    disk.addPartition(48,"ext4","normal")
