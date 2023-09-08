@@ -22,8 +22,20 @@ def install_pkg (package_name):
 
 def remove_pkg(package_name):
     if type(package_name) == str:
-        pass
+        res = utils.run_cmd(["sudo","pacman","-R","--noconfirm",package_name])
+        if len(res.stderr.split("\n")) < 2:
+            return True
+        else:
+            return False
     else:
         print("Package Name Must be String")
 
-
+def remove_deppkg(package_name):
+    if type(package_name) == str:
+        res = utils.run_cmd(["sudo","pacman","-Rdd","--noconfirm",package_name])
+        if len(res.stderr.split("\n")) < 2:
+            return True
+        else:
+            return False
+    else:
+        print("Package Name Must be String")

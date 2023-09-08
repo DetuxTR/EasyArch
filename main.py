@@ -1,4 +1,3 @@
-import parted
 import pacmanwrapper
 import diskutil
 import sys
@@ -38,3 +37,4 @@ if __name__ == "__main__":
     #         else:
     #             print("Package is already installed and up to date")
     #             break
+    pacmanwrapper.remove_pkg("micro")
