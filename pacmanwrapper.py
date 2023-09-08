@@ -17,7 +17,12 @@ def install_pkg (package_name):
         if len(result) == 1:
             return [True]
 
+    else:
+        print("Package Name Must be String")
 
+def remove_pkg(package_name):
+    if type(package_name) == str:
+        pass
     else:
         print("Package Name Must be String")
 
