@@ -20,9 +20,21 @@ if __name__ == "__main__":
     #
     # disk.deletePartitionbyNum(1)
     # print(disk.lastPartInfo()["number"])
-    pres = pacmanwrapper.install_pkg("asciiquarium")
-    if pres[0] and pres[1]: #Package Already Installed,
-        if pres[2]:
-            print("Package Already Installed, Package Updated!!!")
-        else:
-            print("Package is already installed and up to date")
+
+
+    # pres = pacmanwrapper.install_pkg("micro")
+    #
+    # print(pres)
+    #
+    # while True:
+    #     if len(pres) < 2 and pres[0] == True:
+    #         print("Package Installed")
+    #         break
+    #
+    #     if pres[0] and pres[1]: #Package Already Installed,
+    #         if pres[2]:
+    #             print("Package Already Installed, Package Updated!!!")
+    #             break
+    #         else:
+    #             print("Package is already installed and up to date")
+    #             break
