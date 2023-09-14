@@ -39,3 +39,23 @@ def remove_deppkg(package_name):
             return False
     else:
         print("Package Name Must be String")
+
+def install_from_txt(txtfile):
+    f  = open(txtfile,"r")
+    print(f.read())
+
+def add_pkg_to_txt(package,txtfile):
+    f = open(txtfile,"w")
+
+
+    if check_package(package):
+        print("Package Available")
+        f.write("{}".format(package))
+    else:
+        print("Package not found")
+
+def check_package(package_name):
+    res=utils.run_cmd("sudo pacman -Si {}".format(package_name).split())
+
+    if len(res.stderr) == 0:
+        return True

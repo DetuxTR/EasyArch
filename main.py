@@ -37,4 +37,5 @@ if __name__ == "__main__":
     #         else:
     #             print("Package is already installed and up to date")
     #             break
-    pacmanwrapper.remove_pkg("micro")
+
+    pacmanwrapper.add_pkg_to_txt("python","packagelist")
