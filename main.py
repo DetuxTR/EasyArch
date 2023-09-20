@@ -17,7 +17,7 @@ if __name__ == "__main__":
     # disk.getPartInfofromNumber(-1)
     # print(disk.lastPartInfo()["number"])
     #
-    # disk.deletePartitionbyNum(1)
+    # disk.addPartition(48,"ext4","normal")
     # print(disk.lastPartInfo()["number"])
 
 

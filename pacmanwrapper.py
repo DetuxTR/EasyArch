@@ -1,5 +1,6 @@
 import utils
 
+print("hello")
 def install_pkg (package_name):
     if type(package_name) ==  str:
         res = utils.run_cmd(["sudo", "pacman","-Sy","--noconfirm",package_name])
