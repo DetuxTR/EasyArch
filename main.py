@@ -17,25 +17,29 @@ if __name__ == "__main__":
     # disk.getPartInfofromNumber(-1)
     # print(disk.lastPartInfo()["number"])
     #
-    # disk.deletePartitionbyNum(1)
+    # disk.addPartition(48,"ext4","normal")
     # print(disk.lastPartInfo()["number"])
 
+    pac = pacmanwrapper.Pacman()
+    pres = pac.install_pkg("micro")
 
-    # pres = pacmanwrapper.install_pkg("micro")
-    #
-    # print(pres)
-    #
-    # while True:
-    #     if len(pres) < 2 and pres[0] == True:
-    #         print("Package Installed")
-    #         break
-    #
-    #     if pres[0] and pres[1]: #Package Already Installed,
-    #         if pres[2]:
-    #             print("Package Already Installed, Package Updated!!!")
-    #             break
-    #         else:
-    #             print("Package is already installed and up to date")
-    #             break
+    print(pres)
 
-    pacmanwrapper.add_pkg_to_txt("python","packagelist")
+    while True:
+        if len(pres) < 2 and pres[0] == True:
+            print("Package Installed")
+            break
+
+        if pres[0] and pres[1]: #Package Already Installed,
+            if pres[2]:
+                print("Package Already Installed, Package Updated!!!")
+                break
+            else:
+                print("Package is already installed and up to date")
+                break
+
+    pac.check_package("micro")
+    # pac.remove_pkg("micro")
+    # pacmanwrapper.add_pkg_to_txt("python","packagelist")
+    # pacmanwrapper.check_package_exists("python","packagelist")
+
