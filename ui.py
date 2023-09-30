@@ -1,5 +1,5 @@
 import flet
-from flet import Page, UserControl, Column, Container, colors, border_radius, padding, Text, Row, ElevatedButton, icons, IconButton,Dropdown, dropdown
+from flet import Page, UserControl, Column, Container, colors, border_radius, padding, Text, Row, ElevatedButton, icons, IconButton,Dropdown, dropdown, FontWeight
 
 
 class App(UserControl):
@@ -65,7 +65,9 @@ class App(UserControl):
                                                                controls=[
                                                                     IconButton(
                                                                         icon=icons.POWER_SETTINGS_NEW,
-                                                                        scale=1.3
+                                                                        scale=1.3,
+                                                                        tooltip="Shutdown",
+
 
                                                                     )
                                                                ]
@@ -82,6 +84,8 @@ class App(UserControl):
 
                                                                     tooltip="Select Language",
                                                                     hint_text="Select Language",
+                                                                    hint_style=flet.TextStyle(size=15),
+
 
                                                                     options=[
                                                                         dropdown.Option("English")
@@ -92,9 +96,13 @@ class App(UserControl):
                                                         ),
                                                         Column(expand=True,
                                                                alignment=flet.MainAxisAlignment.END,
-                                                               horizontal_alignment=flet.CrossAxisAlignment.CENTER,
+                                                               horizontal_alignment=flet.CrossAxisAlignment.END,
                                                                controls=[
-
+                                                                    IconButton(
+                                                                        icon=icons.ARROW_RIGHT_ALT,
+                                                                        tooltip="Use arch in archiso enviroment(Live CD)",
+                                                                        scale=1.3
+                                                                    )
                                                                ]
                                                                ),
 
