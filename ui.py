@@ -1,7 +1,7 @@
 import flet
 import ui_2
 from flet import Page, UserControl, Column, Container, colors, border_radius, padding, Text, Row, ElevatedButton, icons, \
-    IconButton, Dropdown, dropdown, FontWeight, AlertDialog
+    IconButton, Dropdown, dropdown, FontWeight, AlertDialog, Theme, OutlinedButton, ButtonStyle, RoundedRectangleBorder, BorderSide, Border
 
 
 class App(UserControl):
@@ -15,10 +15,11 @@ class App(UserControl):
                 controls=[
 
                     Container(
-                        bgcolor=self.style["bg-color"],
+                        # bgcolor=self.style["bg-color"],
                         width=450,
                         height=550,
                         border_radius=self.style["border-radius"],
+
 
                         content=(
                             Column(
@@ -28,6 +29,7 @@ class App(UserControl):
                                     Container(
                                         width=430,
                                         height=530,
+
 
                                         content=(
                                             Column(
@@ -46,12 +48,12 @@ class App(UserControl):
                                                                 alignment=flet.MainAxisAlignment.START,
                                                                 horizontal_alignment=flet.CrossAxisAlignment.START,
                                                                 controls=[
-                                                                    IconButton(
-                                                                        icon=icons.INFO,
-                                                                        scale=0.8,
-                                                                        on_click=self.show_inf_dialog
-
-                                                                    )
+                                                                    # IconButton(
+                                                                    #     icon=icons.INFO,
+                                                                    #     scale=0.8,
+                                                                    #     on_click=self.show_inf_dialog
+                                                                    #
+                                                                    # )
                                                                 ]
                                                             ),
                                                             Column(
@@ -61,7 +63,7 @@ class App(UserControl):
                                                                 horizontal_alignment=flet.CrossAxisAlignment.CENTER,
                                                                 controls=[
                                                                     Text("Hello!",
-                                                                         size=25,
+                                                                         size=35,
 
                                                                          )
                                                                 ]
@@ -98,10 +100,13 @@ class App(UserControl):
                                                                                                 # bgcolor=self.style[
                                                                                                 #     "secondary-bg-color"]
                                                                                                 content=(
-                                                                                                    ElevatedButton(
-                                                                                                        text="Start Custom Installation",
+                                                                                                    OutlinedButton(
+                                                                                                        text="Start "
+                                                                                                             "Custom "
+                                                                                                             "Installation",
                                                                                                         width=50,
-                                                                                                        height=200
+                                                                                                        height=200,
+                                                                                                        style=self.ret_main_button_style()
 
                                                                                                     )
                                                                                                 )
@@ -116,10 +121,11 @@ class App(UserControl):
                                                                                                 # bgcolor=self.style[
                                                                                                 #     "secondary-bg-color"]
                                                                                                 content=(
-                                                                                                    ElevatedButton(
+                                                                                                    OutlinedButton(
                                                                                                         text="Use a preset",
                                                                                                         width=50,
-                                                                                                        height=200
+                                                                                                        height=200,
+                                                                                                        style=self.ret_main_button_style()
 
                                                                                                     )
                                                                                                 )
@@ -139,13 +145,14 @@ class App(UserControl):
                                                                                                 # bgcolor=self.style[
                                                                                                 #     "secondary-bg-color"]
                                                                                                 content=(
-                                                                                                    ElevatedButton(
+                                                                                                    OutlinedButton(
                                                                                                         text="Search "
                                                                                                              "Presets "
                                                                                                              "From "
                                                                                                              "Github",
                                                                                                         width=50,
-                                                                                                        height=200
+                                                                                                        height=200,
+                                                                                                        style=self.ret_main_button_style()
 
                                                                                                     )
 
@@ -161,11 +168,11 @@ class App(UserControl):
                                                                                                 # bgcolor=self.style[
                                                                                                 #     "secondary-bg-color"]
                                                                                                 content=(
-                                                                                                    ElevatedButton(
+                                                                                                    OutlinedButton(
                                                                                                         text="Installer Settings",
                                                                                                         width=50,
-                                                                                                        height=200
-
+                                                                                                        height=200,
+                                                                                                        style=self.ret_main_button_style()
 
                                                                                                     )
                                                                                                 )
@@ -198,6 +205,7 @@ class App(UserControl):
                                                                         icon=icons.POWER_SETTINGS_NEW,
                                                                         scale=1.3,
                                                                         tooltip="Shutdown",
+                                                                        style=self.ret_main_button_style()
 
                                                                     )
                                                                 ]
@@ -208,18 +216,7 @@ class App(UserControl):
                                                                 alignment=flet.MainAxisAlignment.END,
                                                                 horizontal_alignment=flet.CrossAxisAlignment.CENTER,
                                                                 controls=[
-                                                                    Dropdown(
-                                                                        width=200,
-                                                                        height=45,
 
-                                                                        tooltip="Select Language",
-                                                                        hint_text="Select Language",
-                                                                        hint_style=flet.TextStyle(size=15),
-
-                                                                        options=[
-                                                                            dropdown.Option("English")
-                                                                        ]
-                                                                    )
 
                                                                 ]
                                                             ),
@@ -228,9 +225,10 @@ class App(UserControl):
                                                                    horizontal_alignment=flet.CrossAxisAlignment.END,
                                                                    controls=[
                                                                        IconButton(
-                                                                           icon=icons.ARROW_RIGHT_ALT,
+                                                                           icon=icons.EXIT_TO_APP,
                                                                            tooltip="Use arch in archiso enviroment(Live CD)",
-                                                                           scale=1.3
+                                                                           scale=1.3,
+                                                                           style=self.ret_main_button_style()
                                                                        )
                                                                    ]
                                                                    ),
@@ -317,7 +315,7 @@ class App(UserControl):
                                                                 controls=[
                                                                     IconButton(
                                                                         icon=icons.ARROW_FORWARD,
-                                                                        tooltip="Next Pape",
+                                                                        tooltip="Next Page",
                                                                         scale=0.8
                                                                     )
                                                                 ]
@@ -417,23 +415,46 @@ class App(UserControl):
 
         )
 
+    def ret_main_button_style(self):
+        return ButtonStyle(
+            color=
+            self.style[
+                "text-color"],
+            shape={
+                flet.MaterialState.DEFAULT: RoundedRectangleBorder(
+                    radius=20)
+            },
+            bgcolor=self.style["secondary-bg-color"],
+            side=BorderSide(color=self.style["border-color"],width=1.2)
+
+        )
+
 
 def main(page: Page):
     page.title = "EasyArch Utily"
     page.window_height = 600
     page.window_width = 500
-
+    page.fonts = {
+        "Open Sans": "/fonts/OpenSans-Regular.ttf",
+        "Roboto": "/fonts/Roboto-Regular.ttf"
+    }
     style = {
         "text-color": colors.WHITE,
-        "secondary-bg-color": colors.WHITE60,
-        "bg-color": colors.BLACK12,
+        "secondary-bg-color": colors.BLACK12,
+        "bg-color": colors.BLACK38,
         "border-radius": 12,
-        "main-ui-font": "O"
+        "main-ui-font": "Roboto",
+        "border-color": colors.BLUE_50
     }
     app = App(style)
+    page.bgcolor=style["bg-color"]
     page.add(app)
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
+    page.theme = Theme(
+        font_family="Roboto",
+
+    )
 
     page.update()
 
